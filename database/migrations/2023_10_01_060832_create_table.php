@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_invoices', function (Blueprint $table) {
+        Schema::create('table', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_product');
-            $table->unsignedBigInteger('id_invoices');
-            $table->integer('amount');
+            $table->unsignedBigInteger('id_area');
+            $table->string('name');
+            $table->integer('status');
             $table->timestamps();
+
+            $table->foreign('id_area')->references('id')->on('area');
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_invoices');
+        Schema::dropIfExists('table');
     }
 };

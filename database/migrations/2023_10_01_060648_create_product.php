@@ -21,8 +21,9 @@ return new class extends Migration
             $table->integer('price');
             $table->boolean('status'); // Sử dụng boolean nếu muốn true/false
             $table->timestamps();
+
+            $table->foreign('id_category')->references('id')->on('category');
         });
-        
     }
 
     /**

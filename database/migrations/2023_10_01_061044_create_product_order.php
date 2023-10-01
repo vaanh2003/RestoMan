@@ -13,13 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sale_product', function (Blueprint $table) {
+        Schema::create('product_order', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_product');
-            $table->integer('price_sale');
-            $table->datetime('start_date');
-            $table->datetime('end_date');
+            $table->unsignedBigInteger('id_order');
+            $table->integer('amount');
             $table->timestamps();
+
+             // Tạo khóa ngoại cho trường id_product
+            $table->foreign('id_product')->references('id')->on('product');
+
+            // Tạo khóa ngoại cho trường id_order
+            $table->foreign('id_order')->references('id')->on('order');
         });
     }
 
@@ -30,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sale_product');
+        Schema::dropIfExists('product_order');
     }
 };

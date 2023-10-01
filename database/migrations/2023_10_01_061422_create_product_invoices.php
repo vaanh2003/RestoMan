@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('product_invoices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("id_shifts");
-            $table->string('name');
-            $table->string('email'); // Sửa "gmail" thành "email"
-            $table->string('password');
-            $table->string('img');
-            $table->tinyInteger('role'); // Sử dụng tinyInteger nếu muốn giới hạn giá trị số nguyên
+            $table->unsignedBigInteger('id_product');
+            $table->unsignedBigInteger('id_invoices');
+            $table->integer('amount');
             $table->timestamps();
+
+            $table->foreign('id_product')->references('id')->on('product');
+
+            $table->foreign('id_invoices')->references('id')->on('invoices');
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('product_invoices');
     }
 };
