@@ -31,7 +31,7 @@ class ApiController extends Controller
     }
     public function destroy(product $product)
     {
-        // $product->delete();
+        $product->delete();
         return $product;
     }
 }
