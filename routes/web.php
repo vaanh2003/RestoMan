@@ -23,3 +23,5 @@ Route::get('/',[productController::class,'index']);
 Route::get('table/{id_table}',[productController::class,'show']);
 
 Route::get('/category',[categoryController::class,'index']);
+
+Route::get('products',[productController::class,'showproduct']);
